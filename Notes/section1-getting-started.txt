@@ -1,1 +1,9 @@
-First Commit
+TypeScript is a JavaScript superset. It builds up on JavaScript. It adds new features and advantages to JavaScript and helps us to write less error-prone code. 
+
+TypeScript cannot be executed using JavaScript environments like a browser and thus, Node.js cannot execute TypeScript. TypeScript is also a compiler that compiles your code to JavaScript. TypeScript compiler compiles the TypeScript features to JavaScript "workarounds".
+
+To compile a TypeScript file, you need to install the typescript package using the command - npm install -g typescript. This installs the typescript package globally.
+
+To compile the TypeScript file to JavaScript file, run the command, tsc fileName.ts OR tsc.cmd fileName.ts. This command will generate a fileName.js file which will contain the compiled TypeScript code into JavaScript code.
+
+TypeScript adds data types to JavaScript code to make it error-free. Along with this, it also allows us to use next-gen JavaScript features that is then compiled down for older browsers. We can also use non-JavaScript features like Interfaces and Generics with TypeScript. It has rich configuration options. Lastly, we can also use meta-programming features like Decorators. 
