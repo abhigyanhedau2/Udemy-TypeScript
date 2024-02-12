@@ -1,0 +1,5 @@
+Core types in JavaScript:
+    1. number
+    2. string
+    3. boolean
+
