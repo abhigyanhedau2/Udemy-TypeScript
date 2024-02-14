@@ -3,3 +3,136 @@ Core types in JavaScript:
     2. string
     3. boolean
 
+TypeScript's type system only helps you during development (i.e. before the code gets compiled). The key difference is: JavaScript uses "dynamic types" (resolved at runtime), TypeScript uses "static types" (set during development)
+
+let num1 = 5; also sets - let num1: number = 5; TypeScript automatically infers the type of the variable from the value
+
+let num1 = 5;
+num1 = "str";
+This gives error - Type 'string' is not assignable to type 'number'.
+
+
+Object Types:
+const person: {
+    name: string;
+    age: number;
+} = {
+    name: "Abhigyan",
+    age: 30,
+};
+
+Here, { name: string; age: number; } is type of person object. We can set person: object as generic type like:
+const person: object = {
+    name: "Abhigyan",
+    age: 30,
+};
+
+If we have an object like:
+const product = {
+    id: "abc1",
+    price: 12.99,
+    tags: ["great-offer", "hot-and-new"],
+    details: {
+        title: "Red Carpet",
+        description: "A great carpet - almost brand new!"
+    }
+}
+
+This would be the type of such object:
+{
+    id: string;
+    price: number;
+    tags: string[];
+    details: {
+        title: string;
+        description: string;
+    }
+}
+
+Thus, we can write the same object in TypeScript as:
+const product: {
+    id: string;
+    price: number;
+    tags: string[];
+    details: {
+        title: string;
+        description: string;
+    }
+} = {
+    id: "abc1",
+    price: 12.99,
+    tags: ["great-offer", "hot-and-new"],
+    details: {
+        title: "Red Carpet",
+        description: "A great carpet - almost brand new!"
+    }
+}
+
+Tuples in TypeScript - [number, string] - Special array with fixed length, first element is number and second element is string
+
+Enums:
+enum Cost {
+    LOW,
+    MEDIUM,
+    HIGH,
+}
+
+// LOW recieves 0, MEDIUM recieves 1 and HIGH recieves 2
+
+enum Cost {
+    LOW = 5,
+    MEDIUM,
+    HIGH,
+}
+
+// LOW recieves 5, MEDIUM recieves 6 and HIGH recieves 7
+
+enum Cost {
+    LOW = 5,
+    MEDIUM = "Medium",
+    HIGH = "high",
+}
+
+
+Union Types: Can store multiple types in a single variable
+
+let age: number | string = 30;
+age = "30";
+
+This won't throw an error when assigning a new type
+
+
+Literal Type - Type is inferred as the value
+
+const num1 = 5;
+Here, num1 is of type 5
+
+const str1 = "Hello";
+Here, str1 is of type "Hello"
+
+Example of Literal Type:
+function combine(
+    input1: number | string,
+    input2: number | string,
+    resultConversion: "as-text" | "as-number" // literal type
+): number | string {
+    let result;
+    if (typeof input1 === "number" && typeof input2 === "number")
+        result = input1 + input2;
+    else result = input1.toString() + input2.toString();
+
+    if (resultConversion === "as-number") return +result;
+    return result.toString();
+}
+
+
+Type Alias: Give alias to type, especially long union types
+type Combinable = number | string;
+
+Function Types:
+function addValues(num1: number, num2: number): number {
+    return num1 + num2;
+}
+
+const combineValues: (num1: number, num2: number) => number = addValues;
+const addAndHandle: (num1: number, num2: number, cb: (num: number) => void) => void = addAndHandle; // add and print
